@@ -1,0 +1,152 @@
+.navbar {
+  background-color: #282c34;
+  color: white;
+  padding: 3px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Wrap nav links and user actions in separate containers */
+.nav-links {
+  display: flex;
+  gap: 5rem;
+  margin-left: 30px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: #61dafb;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Dropdown styling */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  color: black;
+  min-width: 100px;
+  right: 0;
+  z-index: 1;
+}
+
+.dropdown-content button {
+  padding: 10px;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown-content button:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Hamburger button */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Responsive rules */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    background-color: #282c34;
+    width: 80%;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    padding: 20px 0;
+    display: none;
+    gap: 1rem;
+    z-index: 99;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-link {
+    padding: 10px 20px;
+    width: 100%;
+    text-align: left;
+    color: #61dafb;
+  }
+
+  .nav-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  .dropdown {
+    margin-left: 1rem;
+    color: #61dafb;
+  }
+  .dropbtn {
+    color: #61dafb;
+  }
+  .dropdown-content {
+    position: static;
+    color: #61dafb;
+    background-color: #282c34;
+    width: 100%;
+  }
+
+  .dropdown-content button {
+    width: 100%;
+    text-align: left;
+  }
+
+  /* ✅ Mobile-only hover background effects */
+  .nav-link:hover {
+    background-color: rgb(117, 16, 16) !important;
+    color: #61dafb !important;
+  }
+  .dropdown-content button:hover {
+    background-color: #e0e0e0;
+  }
+  .dropdown-content button {
+    color: #61dafb; /* 👈 This will apply only on mobile */
+  }
+
+  .dropbtn:hover {
+    border-radius: 4px;
+    color: #61dafb;
+  }
+}

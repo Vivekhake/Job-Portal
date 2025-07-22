@@ -1,0 +1,75 @@
+.user-form {
+  max-width: 400px;
+  margin: 5rem auto;
+  padding: 30px 25px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
+  box-sizing: border-box;
+}
+
+.user-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #0077cc;
+}
+
+.user-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.user-form input,
+.user-form select {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.user-form input:focus,
+.user-form select:focus {
+  border-color: #0077cc;
+  outline: none;
+}
+
+.user-form button {
+  background-color: #0077cc;
+  color: white;
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.user-form button:hover {
+  background-color: #005fa3;
+}
+
+/* ✅ Mobile Responsive Styles */
+@media (max-width: 880px) {
+  .user-form {
+    margin: 2rem 1rem;
+    padding: 20px 15px;
+  }
+
+  .user-form h2 {
+    font-size: 1.4rem;
+  }
+
+  .user-form input,
+  .user-form select {
+    font-size: 0.95rem;
+    padding: 9px;
+  }
+
+  .user-form button {
+    font-size: 1rem;
+    padding: 9px;
+  }
+}

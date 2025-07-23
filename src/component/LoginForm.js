@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+// src/component/LoginForm.js
+import React, { useState, useContext } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // ✅ Import navigate
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../UserContext ";
 import "./LoginForm.css";
 
 const LoginForm = () => {
+  const { setUser } = useContext(UserContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    role: "STUDENT", // default role
+    role: "STUDENT", // default
   });
   const [error, setError] = useState("");
-
-  const navigate = useNavigate(); // ✅ Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,14 +27,16 @@ const LoginForm = () => {
         formData,
         { withCredentials: true }
       );
-      console.log("Login success", res.data);
-      alert("Login successful!");
 
-      // ✅ Save only name to localStorage
-      localStorage.setItem("user", JSON.stringify({ name: res.data.name }));
+      // ✅ Save full user data
+      localStorage.setItem("user", JSON.stringify(res.data));
+      setUser(res.data); // ✅ Set context
 
-      // ✅ Redirect to home page
-      navigate("/");
+      // ✅ Redirect based on role
+      if (res.data.role === "STUDENT") navigate("/student-dashboard");
+      else if (res.data.role === "RECRUITER") navigate("/recruiter-dashboard");
+      else if (res.data.role === "ADMIN") navigate("/admin-panel");
+      else navigate("/");
     } catch (err) {
       console.error("Login error:", err);
       setError("Invalid email, password, or role");

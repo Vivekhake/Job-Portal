@@ -10,18 +10,17 @@
 /* Wrap nav links and user actions in separate containers */
 .nav-links {
   display: flex;
-  gap: 5rem;
+  gap: 3rem;
   margin-left: 30px;
 }
 
 .nav-link {
-  color: white;
+  color: #61dafb;
   text-decoration: none;
-  font-weight: 500;
 }
 
 .nav-link:hover {
-  color: #61dafb;
+  color: white;
 }
 
 .nav-actions {
@@ -38,7 +37,7 @@
 
 .dropbtn {
   background-color: transparent;
-  color: white;
+  color: #61dafb;
   border: none;
   font-size: 16px;
   cursor: pointer;
@@ -47,7 +46,7 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: white;
+  background-color: #282c34;
   color: black;
   min-width: 100px;
   right: 0;
@@ -61,10 +60,8 @@
   border: none;
   text-align: left;
   cursor: pointer;
-}
-
-.dropdown-content button:hover {
-  background-color: #f0f0f0;
+  color: #61dafb;
+  font-weight: 100px;
 }
 
 .dropdown:hover .dropdown-content {

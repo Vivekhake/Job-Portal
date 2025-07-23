@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate, Link } from "react-router-dom"; // ✅ import Link
 import "./user-form.css";
 
 const UserForm = () => {
@@ -9,6 +10,8 @@ const UserForm = () => {
     password: "",
     role: "student",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -22,6 +25,7 @@ const UserForm = () => {
     try {
       await axios.post("http://localhost:8080/api/users/register", formData);
       alert("User registered successfully!");
+      navigate("/login"); // ✅ navigate to login page
     } catch (error) {
       console.error(error);
       alert("Registration failed!");
@@ -65,6 +69,17 @@ const UserForm = () => {
 
         <button type="submit">Register</button>
       </form>
+
+      {/* ✅ Add login link below the form */}
+      <p>
+        Already have an account?{" "}
+        <Link
+          to="/login"
+          style={{ color: "blue", textDecoration: "underline" }}
+        >
+          Login
+        </Link>
+      </p>
     </div>
   );
 };

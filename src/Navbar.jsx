@@ -1,19 +1,14 @@
-import React, { useEffect, useState, useRef } from "react";
+// src/Navbar.js
+import React, { useContext, useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
+import { UserContext } from "./UserContext ";
 
 const Navbar = () => {
-  const [user, setUser] = useState(null);
+  const { user, setUser } = useContext(UserContext);
   const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef(null); // for detecting outside clicks
+  const menuRef = useRef(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -21,7 +16,6 @@ const Navbar = () => {
     navigate("/login");
   };
 
-  // 🧠 Outside click close logic
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -47,40 +41,112 @@ const Navbar = () => {
           Home
         </Link>
         <Link
-          to="/jobs"
-          className="nav-link"
-          onClick={() => setMenuOpen(false)}
-        >
-          Jobs
-        </Link>
-        <Link
-          to="/companies"
-          className="nav-link"
-          onClick={() => setMenuOpen(false)}
-        >
-          Companies
-        </Link>
-        <Link
-          to="/about"
-          className="nav-link"
-          onClick={() => setMenuOpen(false)}
-        >
-          About
-        </Link>
-        <Link
-          to="/contact"
-          className="nav-link"
-          onClick={() => setMenuOpen(false)}
-        >
-          Contact
-        </Link>
-        <Link
           to="/profile"
           className="nav-link"
           onClick={() => setMenuOpen(false)}
         >
           Profile
         </Link>
+
+        {/* ✅ Role-Based Links */}
+        {user && (
+          <>
+            {user.role === "STUDENT" && (
+              <>
+                <Link
+                  to="/student-dashboard"
+                  className="nav-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Dashboard
+                </Link>
+                <Link
+                  to="/student-profile"
+                  className="nav-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  My Profile
+                </Link>
+                <Link
+                  to="/student-jobs"
+                  className="nav-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Jobs & Internships
+                </Link>
+                <Link
+                  to="/student-applications"
+                  className="nav-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  My Applications
+                </Link>
+                <Link
+                  to="/student-resume"
+                  className="nav-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Resume Upload
+                </Link>
+              </>
+            )}
+            {user.role === "RECRUITER" && (
+              <>
+                <Link
+                  to="/recruiter-dashboard"
+                  className="nav-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Dashboard
+                </Link>
+                <Link
+                  to="/post-job"
+                  className="nav-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Post a Job
+                </Link>
+                <Link
+                  to="/my-jobs"
+                  className="nav-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  My Job Listings
+                </Link>
+                <Link
+                  to="/applications"
+                  className="nav-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Applications Received
+                </Link>
+                <Link
+                  to="/candidates"
+                  className="nav-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Search Candidates
+                </Link>
+                <Link
+                  to="/company-profile"
+                  className="nav-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Company Profile
+                </Link>
+              </>
+            )}
+            {user.role === "ADMIN" && (
+              <Link
+                to="/admin-panel"
+                className="nav-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                Admin Panel
+              </Link>
+            )}
+          </>
+        )}
 
         <div className="nav-actions">
           {!user ? (
@@ -104,9 +170,7 @@ const Navbar = () => {
             <div className="dropdown">
               <button className="dropbtn">{user.name} ⏷</button>
               <div className="dropdown-content">
-                <button onClick={handleLogout}>
-                  Logout
-                </button>
+                <button onClick={handleLogout}>Logout</button>
               </div>
             </div>
           )}

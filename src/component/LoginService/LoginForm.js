@@ -2,7 +2,7 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../UserContext ";
+import { UserContext } from "../../UserContext ";
 import "./LoginForm.css";
 
 const LoginForm = () => {
@@ -10,7 +10,7 @@ const LoginForm = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    role: "STUDENT", // default
+    role: "STUDENT",
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -28,14 +28,13 @@ const LoginForm = () => {
         { withCredentials: true }
       );
 
-      // ✅ Save full user data
       localStorage.setItem("user", JSON.stringify(res.data));
-      setUser(res.data); // ✅ Set context
+      setUser(res.data);
 
-      // ✅ Redirect based on role
-      if (res.data.role === "STUDENT") navigate("/student-dashboard");
-      else if (res.data.role === "RECRUITER") navigate("/recruiter-dashboard");
-      else if (res.data.role === "ADMIN") navigate("/admin-panel");
+      // ✅ Corrected redirect routes
+      if (res.data.role === "STUDENT") navigate("/studentHomePage");
+      else if (res.data.role === "RECRUITER") navigate("/recuriterhome");
+      else if (res.data.role === "ADMIN") navigate("/adminhome");
       else navigate("/");
     } catch (err) {
       console.error("Login error:", err);

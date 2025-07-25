@@ -7,7 +7,6 @@
   align-items: center;
 }
 
-/* Wrap nav links and user actions in separate containers */
 .nav-links {
   display: flex;
   gap: 3rem;
@@ -17,6 +16,7 @@
 .nav-link {
   color: #61dafb;
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 .nav-link:hover {
@@ -47,21 +47,36 @@
   display: none;
   position: absolute;
   background-color: #282c34;
-  color: black;
-  min-width: 100px;
-  right: 0;
+  min-width: 160px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%; /* ✅ Directly below the button */
   z-index: 1;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.dropdown-content a,
+.dropdown-content button {
+  padding: 15px 0px;
+  width: 100%;
+  gap: 1rem;
+  background: none;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  display: block;
 }
 
 .dropdown-content button {
-  padding: 10px;
-  width: 100%;
-  background: none;
-  border: none;
-  text-align: left;
-  cursor: pointer;
+  font-weight: normal;
+}
+
+.dropdown-content a:hover,
+.dropdown-content button:hover {
   color: #61dafb;
-  font-weight: 100px;
 }
 
 .dropdown:hover .dropdown-content {
@@ -103,7 +118,6 @@
     padding: 10px 20px;
     width: 100%;
     text-align: left;
-    color: #61dafb;
   }
 
   .nav-actions {
@@ -111,39 +125,33 @@
     align-items: flex-start;
     width: 100%;
   }
+
   .dropdown {
+    width: 100%;
     margin-left: 1rem;
-    color: #61dafb;
   }
-  .dropbtn {
-    color: #61dafb;
-  }
+
   .dropdown-content {
     position: static;
-    color: #61dafb;
     background-color: #282c34;
     width: 100%;
   }
 
+  .dropdown-content a,
   .dropdown-content button {
-    width: 100%;
-    text-align: left;
+    color: #61dafb;
   }
 
-  /* ✅ Mobile-only hover background effects */
   .nav-link:hover {
     background-color: rgb(117, 16, 16) !important;
     color: #61dafb !important;
   }
-  .dropdown-content button:hover {
-    background-color: #e0e0e0;
-  }
-  .dropdown-content button {
-    color: #61dafb; /* 👈 This will apply only on mobile */
-  }
 
   .dropbtn:hover {
     border-radius: 4px;
-    color: #61dafb;
   }
+}
+/* Highlight active NavLink */
+.active-link {
+  color: white;
 }

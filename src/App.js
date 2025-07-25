@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Navbar";
-import UserForm from "./component/userForm";
-import LoginForm from "./component/LoginForm";
+import UserForm from "./component/LoginService/userForm";
+import LoginForm from "./component/LoginService/LoginForm";
 import { UserContext } from "./UserContext ";
+import RecruiterHome from "./component/Recruiter/recruiterhome";
+import SearchCandidates from "./component/Recruiter/SearchCandidates";
+import RecruiterDashboard from "./component/Recruiter/recruiterdashboard";
 
 const DummyPage = ({ name }) => <h2>{name} Page</h2>;
 
@@ -32,6 +35,12 @@ function App() {
             <Route path="/contact" element={<DummyPage name="Contact" />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<UserForm />} />
+            <Route path="/recruiterhome" element={<RecruiterHome />} />
+            <Route path="/searchcandidates" element={<SearchCandidates />} />
+            <Route
+              path="/recruiterdashboard"
+              element={<RecruiterDashboard />}
+            />
           </Routes>
         </div>
       </Router>

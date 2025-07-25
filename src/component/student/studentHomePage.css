@@ -1,0 +1,124 @@
+.student-home-container {
+  min-height: 100vh;
+  padding: 40px;
+  background-color: #f9fafb;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.student-home-header {
+  font-size: 2rem;
+  color: #4f46e5;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.student-home-section {
+  margin-bottom: 40px;
+}
+
+.job-listing-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.job-box {
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  width: calc(20% - 10px); /* 5 boxes per row */
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.company-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.job-box h3 {
+  font-size: 1.1rem;
+  color: #1f2937;
+  margin: 0 0 5px 0;
+  text-align: center;
+}
+
+.job-box p {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin: 4px 0;
+  text-align: center;
+}
+
+.job-description {
+  font-size: 0.85rem;
+  color: #6b7280;
+  text-align: center;
+  margin: 6px 0 12px;
+}
+
+.job-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.btn-apply,
+.btn-join {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.btn-apply {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.btn-apply:hover {
+  background-color: #2563eb;
+}
+
+.btn-join {
+  background-color: #10b981;
+  color: white;
+}
+
+.btn-join:hover {
+  background-color: #059669;
+}
+.application-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.application-table th,
+.application-table td {
+  border: 1px solid #d1d5db;
+  padding: 10px;
+  text-align: center;
+}
+
+.application-table th {
+  background-color: #e5e7eb;
+  font-weight: 600;
+  color: #374151;
+}
+
+.application-table td {
+  background-color: #ffffff;
+  color: #4b5563;
+}

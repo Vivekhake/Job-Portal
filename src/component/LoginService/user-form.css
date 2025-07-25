@@ -1,18 +1,33 @@
-.user-form {
-  max-width: 400px;
-  margin: 5rem auto;
-  padding: 30px 25px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-  font-family: "Segoe UI", sans-serif;
+/* src/user-form.css */
+.user-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 88.8vh;
+
+  background-image: url("/public/images/job_portal_about.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  overflow: hidden; /* ✅ Hides any overflowing content */
+  padding: 20px;
   box-sizing: border-box;
+}
+
+.user-form {
+  background-color: rgba(255, 255, 255, 0.9); /* semi-transparent background */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
 }
 
 .user-form h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #0077cc;
+  color: #007bff;
 }
 
 .user-form form {
@@ -32,12 +47,12 @@
 
 .user-form input:focus,
 .user-form select:focus {
-  border-color: #0077cc;
+  border-color: #007bff;
   outline: none;
 }
 
 .user-form button {
-  background-color: #0077cc;
+  background-color: #007bff;
   color: white;
   padding: 10px;
   font-size: 1rem;
@@ -45,10 +60,6 @@
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-.user-form button:hover {
-  background-color: #005fa3;
 }
 
 /* ✅ Mobile Responsive Styles */

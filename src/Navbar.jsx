@@ -2,6 +2,7 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
+import { NavLink } from "react-router-dom";
 import { UserContext } from "./UserContext ";
 
 const Navbar = () => {
@@ -37,22 +38,18 @@ const Navbar = () => {
       </div>
 
       <div ref={menuRef} className={`nav-links ${menuOpen ? "open" : ""}`}>
-        <Link to="/" className="nav-link" onClick={() => setMenuOpen(false)}>
-          Home
-        </Link>
-        <Link
-          to="/profile"
-          className="nav-link"
-          onClick={() => setMenuOpen(false)}
-        >
-          Profile
-        </Link>
-
-        {/* ✅ Role-Based Links */}
         {user && (
           <>
             {user.role === "STUDENT" && (
               <>
+                <Link
+                  to="/student-home"
+                  className="nav-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Home
+                </Link>
+
                 <Link
                   to="/student-dashboard"
                   className="nav-link"
@@ -61,89 +58,125 @@ const Navbar = () => {
                   Dashboard
                 </Link>
                 <Link
-                  to="/student-profile"
-                  className="nav-link"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  My Profile
-                </Link>
-                <Link
                   to="/student-jobs"
                   className="nav-link"
                   onClick={() => setMenuOpen(false)}
                 >
                   Jobs & Internships
                 </Link>
-                <Link
-                  to="/student-applications"
-                  className="nav-link"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  My Applications
-                </Link>
-                <Link
-                  to="/student-resume"
-                  className="nav-link"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Resume Upload
-                </Link>
+
+                {/* ✅ More Options Dropdown for Student */}
+                <div className="dropdown">
+                  <button className="dropbtn nav-link">More Options</button>
+                  <div className="dropdown-content">
+                    <Link
+                      to="/student-profile"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      My Profile
+                    </Link>
+                    <Link
+                      to="/student-resume"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Resume Upload
+                    </Link>
+                    <Link
+                      to="/student-applications"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      My Applications
+                    </Link>
+                  </div>
+                </div>
               </>
             )}
+
             {user.role === "RECRUITER" && (
               <>
-                <Link
-                  to="/recruiter-dashboard"
-                  className="nav-link"
+                <NavLink
+                  to="/recruiterhome"
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "active-link" : ""}`
+                  }
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Home
+                </NavLink>
+
+                <NavLink
+                  to="/recruiterdashboard"
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "active-link" : ""}`
+                  }
                   onClick={() => setMenuOpen(false)}
                 >
                   Dashboard
-                </Link>
-                <Link
-                  to="/post-job"
-                  className="nav-link"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Post a Job
-                </Link>
-                <Link
-                  to="/my-jobs"
-                  className="nav-link"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  My Job Listings
-                </Link>
-                <Link
-                  to="/applications"
-                  className="nav-link"
+                </NavLink>
+
+                <NavLink
+                  to="/ApplicationReceived"
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "active-link" : ""}`
+                  }
                   onClick={() => setMenuOpen(false)}
                 >
                   Applications Received
-                </Link>
-                <Link
-                  to="/candidates"
-                  className="nav-link"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Search Candidates
-                </Link>
-                <Link
-                  to="/company-profile"
-                  className="nav-link"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Company Profile
-                </Link>
+                </NavLink>
+
+                {/* ✅ More Options Dropdown for Recruiter */}
+                <div className="dropdown">
+                  <button className="dropbtn nav-link">More Options</button>
+                  <div className="dropdown-content">
+                    <NavLink
+                      to="/CompanyProfile"
+                      className={({ isActive }) =>
+                        `${isActive ? "active-link" : ""}`
+                      }
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Company Profile
+                    </NavLink>
+                    <NavLink
+                      to="/MyJobListings"
+                      className={({ isActive }) =>
+                        `${isActive ? "active-link" : ""}`
+                      }
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      My Job Listings
+                    </NavLink>
+                    <NavLink
+                      to="/SearchCandidates"
+                      className={({ isActive }) =>
+                        `${isActive ? "active-link" : ""}`
+                      }
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Search Candidates
+                    </NavLink>
+                  </div>
+                </div>
               </>
             )}
+
             {user.role === "ADMIN" && (
-              <Link
-                to="/admin-panel"
-                className="nav-link"
-                onClick={() => setMenuOpen(false)}
-              >
-                Admin Panel
-              </Link>
+              <>
+                <Link
+                  to="/admin-panel"
+                  className="nav-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link
+                  to="/admin-panel"
+                  className="nav-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Admin Panel
+                </Link>
+              </>
             )}
           </>
         )}
@@ -168,7 +201,7 @@ const Navbar = () => {
             </>
           ) : (
             <div className="dropdown">
-              <button className="dropbtn">{user.name} ⏷</button>
+              <button className="dropbtn">{user.name}</button>
               <div className="dropdown-content">
                 <button onClick={handleLogout}>Logout</button>
               </div>

@@ -1,0 +1,64 @@
+.recruiter-dashboard {
+  padding: 30px;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f4f6f8;
+  min-height: 100vh;
+}
+
+h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 25px;
+}
+
+.application-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+.application-table th,
+.application-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: left;
+}
+
+.application-table th {
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+.application-table a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.accept-btn,
+.delete-btn {
+  padding: 6px 12px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.accept-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.accept-btn:disabled {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+}

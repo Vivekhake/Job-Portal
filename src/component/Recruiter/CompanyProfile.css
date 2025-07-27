@@ -1,0 +1,93 @@
+.company-profile {
+  padding: 30px;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f0f0f0;
+  min-height: 100vh;
+}
+
+h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.company-card {
+  display: flex;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 800px;
+  margin: auto;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.company-logo {
+  width: 120px;
+  height: 120px;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+
+.company-details p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.btn-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.edit-btn,
+.save-btn,
+.cancel-btn {
+  padding: 8px 16px;
+  margin: 0 8px;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.save-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.edit-form {
+  max-width: 600px;
+  margin: auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}

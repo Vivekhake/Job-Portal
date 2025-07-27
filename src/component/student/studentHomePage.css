@@ -1,124 +1,122 @@
 .student-home-container {
-  min-height: 100vh;
-  padding: 40px;
-  background-color: #f9fafb;
-  font-family: "Segoe UI", sans-serif;
+  padding: 30px;
+  background-color: #f5f6fa;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .student-home-header {
-  font-size: 2rem;
-  color: #4f46e5;
-  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: bold;
   text-align: center;
+  margin-bottom: 30px;
+  color: #2f3640;
 }
 
 .student-home-section {
-  margin-bottom: 40px;
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
+.student-home-section h2 {
+  margin-bottom: 15px;
+  color: #192a56;
+}
+
+/* Profile text */
+.student-home-section p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+/* Job Listing Styles */
 .job-listing-row {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
-  justify-content: space-between;
 }
 
 .job-box {
-  background-color: #ffffff;
-  border: 1px solid #d1d5db;
-  border-radius: 12px;
-  width: calc(20% - 10px); /* 5 boxes per row */
-  padding: 16px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background-color: #eaf0f1;
+  border-left: 6px solid #192a56;
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+
+.job-box:hover {
+  transform: translateY(-3px);
 }
 
 .company-logo {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
   margin-bottom: 10px;
 }
 
-.job-box h3 {
-  font-size: 1.1rem;
-  color: #1f2937;
-  margin: 0 0 5px 0;
-  text-align: center;
-}
-
-.job-box p {
-  font-size: 0.9rem;
-  color: #4b5563;
-  margin: 4px 0;
-  text-align: center;
-}
-
 .job-description {
-  font-size: 0.85rem;
-  color: #6b7280;
-  text-align: center;
-  margin: 6px 0 12px;
+  font-size: 14px;
+  color: #555;
+  margin: 10px 0;
 }
 
 .job-buttons {
   display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-top: auto;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
 .btn-apply,
 .btn-join {
-  padding: 6px 14px;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  cursor: pointer;
+  padding: 8px 16px;
+  font-size: 14px;
   font-weight: 500;
-  transition: background-color 0.3s ease;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
 .btn-apply {
-  background-color: #3b82f6;
+  background-color: #27ae60;
   color: white;
 }
 
 .btn-apply:hover {
-  background-color: #2563eb;
+  background-color: #219150;
 }
 
 .btn-join {
-  background-color: #10b981;
+  background-color: #2980b9;
   color: white;
 }
 
 .btn-join:hover {
-  background-color: #059669;
+  background-color: #2471a3;
 }
+
+/* Application Tracker Table */
 .application-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .application-table th,
 .application-table td {
-  border: 1px solid #d1d5db;
+  border: 1px solid #ccc;
   padding: 10px;
-  text-align: center;
+  text-align: left;
 }
 
 .application-table th {
-  background-color: #e5e7eb;
-  font-weight: 600;
-  color: #374151;
+  background-color: #dcdde1;
+  color: #2f3640;
 }
 
-.application-table td {
-  background-color: #ffffff;
-  color: #4b5563;
+.application-table tr:nth-child(even) {
+  background-color: #f0f0f0;
 }

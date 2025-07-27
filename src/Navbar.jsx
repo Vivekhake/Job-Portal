@@ -43,7 +43,7 @@ const Navbar = () => {
             {user.role === "STUDENT" && (
               <>
                 <Link
-                  to="/student-home"
+                  to="/studenthomepage"
                   className="nav-link"
                   onClick={() => setMenuOpen(false)}
                 >
@@ -58,7 +58,7 @@ const Navbar = () => {
                   Dashboard
                 </Link>
                 <Link
-                  to="/student-jobs"
+                  to="/jobs-internships"
                   className="nav-link"
                   onClick={() => setMenuOpen(false)}
                 >
@@ -76,13 +76,13 @@ const Navbar = () => {
                       My Profile
                     </Link>
                     <Link
-                      to="/student-resume"
+                      to="/upload-resume"
                       onClick={() => setMenuOpen(false)}
                     >
                       Resume Upload
                     </Link>
                     <Link
-                      to="/student-applications"
+                      to="/my-applications"
                       onClick={() => setMenuOpen(false)}
                     >
                       My Applications
@@ -115,7 +115,17 @@ const Navbar = () => {
                 </NavLink>
 
                 <NavLink
-                  to="/ApplicationReceived"
+                  to="/post-job"
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "active-link" : ""}`
+                  }
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Post Job
+                </NavLink>
+
+                <NavLink
+                  to="/applications"
                   className={({ isActive }) =>
                     `nav-link ${isActive ? "active-link" : ""}`
                   }
@@ -129,7 +139,7 @@ const Navbar = () => {
                   <button className="dropbtn nav-link">More Options</button>
                   <div className="dropdown-content">
                     <NavLink
-                      to="/CompanyProfile"
+                      to="/company-profile"
                       className={({ isActive }) =>
                         `${isActive ? "active-link" : ""}`
                       }
@@ -138,7 +148,7 @@ const Navbar = () => {
                       Company Profile
                     </NavLink>
                     <NavLink
-                      to="/MyJobListings"
+                      to="/myjobs"
                       className={({ isActive }) =>
                         `${isActive ? "active-link" : ""}`
                       }

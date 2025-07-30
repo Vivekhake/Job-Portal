@@ -1,17 +1,7 @@
 .applications-container {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 2rem;
-  font-family: "Segoe UI", sans-serif;
-  background-color: #fdfdfd;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-}
-
-.applications-container h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-  color: #007bff;
+  padding: 20px;
+  background-color: #f7f7f7;
+  font-family: Arial, sans-serif;
 }
 
 .applications-table {
@@ -21,33 +11,15 @@
 
 .applications-table th,
 .applications-table td {
-  padding: 1rem;
   border: 1px solid #ccc;
-  text-align: center;
+  padding: 12px;
+  text-align: left;
 }
 
 .applications-table th {
-  background-color: #f2f2f2;
-  color: #333;
+  background-color: #e2e2e2;
 }
 
-.status {
-  font-weight: bold;
-  padding: 0.4rem 0.8rem;
-  border-radius: 8px;
-}
-
-.status.under-review {
-  background-color: #fff3cd;
-  color: #856404;
-}
-
-.status.interview-scheduled {
-  background-color: #cce5ff;
-  color: #004085;
-}
-
-.status.rejected {
-  background-color: #f8d7da;
-  color: #721c24;
+.applications-table tr:nth-child(even) {
+  background-color: #f9f9f9;
 }

@@ -4,15 +4,19 @@ import "./MyApplications.css";
 
 const MyApplications = () => {
   const [applications, setApplications] = useState([]);
+  const studentEmail = localStorage.getItem("userEmail"); // Or use Redux/Auth context
 
   useEffect(() => {
     fetchApplications();
-  }, []);
+  });
 
   const fetchApplications = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/applications"
+        "http://localhost:8080/api/applications/student",
+        {
+          params: { email: studentEmail },
+        }
       );
       setApplications(response.data);
     } catch (error) {

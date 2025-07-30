@@ -1,122 +1,97 @@
 .student-home-container {
-  padding: 30px;
-  background-color: #f5f6fa;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f5f7fa;
 }
 
 .student-home-header {
-  font-size: 28px;
-  font-weight: bold;
   text-align: center;
+  color: #333;
   margin-bottom: 30px;
-  color: #2f3640;
+  font-size: 2rem;
 }
 
-.student-home-section {
+.status-message {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: green;
+}
+
+.section-card {
   background-color: #fff;
   padding: 20px;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+.profile-grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.profile-left {
+  flex: 1;
+  min-width: 250px;
+}
+
+.profile-right {
+  margin-left: 20px;
+}
+
+.profile-image {
+  width: 150px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  object-fit: cover;
+  border: 2px solid #ddd;
 }
 
-.student-home-section h2 {
-  margin-bottom: 15px;
-  color: #192a56;
-}
-
-/* Profile text */
-.student-home-section p {
-  font-size: 16px;
-  margin: 5px 0;
-}
-
-/* Job Listing Styles */
-.job-listing-row {
+.job-listings {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 20px;
 }
 
-.job-box {
-  background-color: #eaf0f1;
-  border-left: 6px solid #192a56;
-  padding: 20px;
-  border-radius: 10px;
-  transition: transform 0.2s;
+.job-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 15px;
+  background-color: #fff;
+  transition: box-shadow 0.3s;
 }
 
-.job-box:hover {
-  transform: translateY(-3px);
-}
-
-.company-logo {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-  margin-bottom: 10px;
-}
-
-.job-description {
-  font-size: 14px;
-  color: #555;
-  margin: 10px 0;
+.job-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
 }
 
 .job-buttons {
-  display: flex;
-  justify-content: space-between;
   margin-top: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .btn-apply,
 .btn-join {
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 500;
+  padding: 8px 12px;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
+  font-weight: bold;
   cursor: pointer;
-  transition: 0.2s ease;
 }
 
 .btn-apply {
-  background-color: #27ae60;
+  background-color: #4caf50;
   color: white;
 }
 
-.btn-apply:hover {
-  background-color: #219150;
+.btn-apply:disabled {
+  background-color: gray;
+  cursor: not-allowed;
 }
 
 .btn-join {
-  background-color: #2980b9;
+  background-color: #2196f3;
   color: white;
-}
-
-.btn-join:hover {
-  background-color: #2471a3;
-}
-
-/* Application Tracker Table */
-.application-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-}
-
-.application-table th,
-.application-table td {
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: left;
-}
-
-.application-table th {
-  background-color: #dcdde1;
-  color: #2f3640;
-}
-
-.application-table tr:nth-child(even) {
-  background-color: #f0f0f0;
 }

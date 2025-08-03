@@ -1,12 +1,9 @@
-// src/components/ApplicationsReceived.js
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ApplicationsReceived.css";
 
 const ApplicationsReceived = () => {
   const [applications, setApplications] = useState([]);
-  const [selectedJob, setSelectedJob] = useState("");
 
   useEffect(() => {
     fetchApplications();
@@ -26,103 +23,86 @@ const ApplicationsReceived = () => {
   const updateStatus = async (id, newStatus) => {
     try {
       await axios.put(
-        `http://localhost:8080/api/applications/${id}/update-status?status=${newStatus}`
+        `http://localhost:8080/api/applications/${id}/update-status`,
+        null,
+        {
+          params: { status: newStatus },
+        }
       );
-      fetchApplications();
+      fetchApplications(); // Refresh list
     } catch (error) {
-      console.error("Error updating status", error);
+      console.error(`Error updating status to ${newStatus}`, error);
     }
   };
 
   const deleteApplication = async (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this application?"
+    );
+    if (!confirmDelete) return;
+
     try {
       await axios.delete(`http://localhost:8080/api/applications/${id}`);
-      fetchApplications();
+      fetchApplications(); // Refresh list
     } catch (error) {
       console.error("Error deleting application", error);
     }
   };
 
-  const filteredApps = selectedJob
-    ? applications.filter((app) => app.jobTitle === selectedJob)
-    : applications;
-
   return (
-    <div className="applications-received">
+    <div className="applications-container">
       <h2>Applications Received</h2>
-
-      <div className="filter-bar">
-        <label>Filter by Job: </label>
-        <select
-          onChange={(e) => setSelectedJob(e.target.value)}
-          value={selectedJob}
-        >
-          <option value="">All</option>
-          {[...new Set(applications.map((a) => a.jobTitle))].map((title) => (
-            <option key={title} value={title}>
-              {title}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <table className="application-table">
-        <thead>
-          <tr>
-            <th>Student Name</th>
-            <th>Email</th>
-            <th>Job Title</th>
-            <th>Status</th>
-            <th>Applied Date</th>
-            <th>Resume</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredApps.map((app) => (
-            <tr key={app.id}>
-              <td>{app.studentName}</td>
-              <td>{app.email}</td>
-              <td>{app.jobTitle}</td>
-              <td>
-                <span
-                  className={`status-badge ${app.status
-                    .toLowerCase()
-                    .replace(" ", "-")}`}
-                >
-                  {app.status}
-                </span>
-              </td>
-              <td>{new Date(app.appliedDate).toLocaleDateString()}</td>
-              <td>
-                <a
-                  href={`http://localhost:8080/uploads/${app.resumeUrl}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  📄 View Resume
-                </a>
-              </td>
-              <td>
-                <select
-                  value={app.status}
-                  onChange={(e) => updateStatus(app.id, e.target.value)}
-                >
-                  <option value="Submitted">Submitted</option>
-                  <option value="Under Review">Under Review</option>
-                  <option value="Shortlisted">Shortlisted</option>
-                  <option value="Interview">Interview</option>
-                  <option value="Offered">Offered</option>
-                  <option value="Rejected">Rejected</option>
-                </select>
-                <button onClick={() => deleteApplication(app.id)}>
-                  Delete
-                </button>
-              </td>
+      {applications.length === 0 ? (
+        <p>No applications received yet.</p>
+      ) : (
+        <table className="applications-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Job Title</th>
+              <th>Company</th>
+              <th>Resume</th>
+              <th>Status</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {applications.map((app) => (
+              <tr key={app.id}>
+                <td>{app.studentName}</td>
+                <td>{app.email}</td>
+                <td>{app.jobTitle}</td>
+                <td>{app.company}</td>
+                <td>
+                  <a
+                    href={app.resumeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Resume
+                  </a>
+                </td>
+                <td>{app.status}</td>
+                <td>
+                  <button onClick={() => updateStatus(app.id, "shortlisted")}>
+                    Accept
+                  </button>
+                  <button onClick={() => updateStatus(app.id, "rejected")}>
+                    Reject
+                  </button>
+                  <button
+                    onClick={() => deleteApplication(app.id)}
+                    style={{ color: "red" }}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };

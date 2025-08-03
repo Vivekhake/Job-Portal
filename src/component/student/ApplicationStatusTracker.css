@@ -1,87 +1,71 @@
 .status-tracker {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: nowrap;
-  margin: 30px 0;
-  gap: 10px; /* Reduced gap between steps */
-  overflow-x: auto;
-  padding: 0 10px;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 10px;
 }
 
-.step-container {
-  position: relative;
+.step-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 60px;
-  flex-shrink: 0;
+  position: relative;
+  animation: fadeInStep 0.5s ease;
 }
 
 .step-circle {
-  width: 30px; /* Slightly smaller circle */
-  height: 30px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background-color: #ccc;
-  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  z-index: 2;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
 }
 
 .step-circle.active {
-  background-color: #28a745; /* Green */
+  background-color: #4caf50;
+  color: white;
+}
+
+.step-circle.current {
+  border: 3px solid #2196f3;
+}
+
+.icon-container {
+  font-size: 18px;
 }
 
 .step-label {
-  margin-top: 6px;
   font-size: 12px;
+  margin-top: 4px;
   text-align: center;
-  max-width: 60px;
+  width: 80px;
 }
 
 .step-line {
-  position: absolute;
-  top: 13px;
-  left: 100%;
-  width: 15px; /* Smaller connecting line */
-  height: 3px;
+  height: 4px;
+  width: 40px;
   background-color: #ccc;
-  z-index: 1;
-  transition: background-color 0.3s ease;
+  position: absolute;
+  top: 16px;
+  left: 36px;
+  z-index: -1;
 }
 
 .step-line.active {
-  background-color: #28a745;
+  background-color: #4caf50;
 }
 
-/* Responsive layout */
-@media (max-width: 600px) {
-  .status-tracker {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    overflow-x: visible;
+@keyframes fadeInStep {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
   }
-
-  .step-container {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .step-label {
-    margin-left: 10px;
-    margin-top: 0;
-    text-align: left;
-  }
-
-  .step-line {
-    top: 50%;
-    left: 35px;
-    width: 10px;
-    height: 2px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

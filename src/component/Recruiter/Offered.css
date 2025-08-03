@@ -1,0 +1,28 @@
+.offered-container {
+  padding: 20px;
+  max-width: 95%;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+.offered-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.offered-table th,
+.offered-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.offered-table th {
+  background-color: #f2f2f2;
+}
+
+.status-offered {
+  color: green;
+  font-weight: bold;
+}

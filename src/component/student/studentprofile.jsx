@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./studentprofile.css"; // Add CSS
+import "./studentprofile.css";
+// import { useNavigate } from "react-router-dom"; // Uncomment if you want to navigate
 
 const StudentProfileForm = () => {
   const [resumeFile, setResumeFile] = useState(null);
   const [profileImageFile, setProfileImageFile] = useState(null);
+
+  // const navigate = useNavigate(); // Uncomment if you want to navigate
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -24,6 +27,8 @@ const StudentProfileForm = () => {
     keySkills: "",
     experience: "",
     projects: "",
+    location: "",
+    role: "",
   });
 
   const handleInputChange = (e) => {
@@ -60,8 +65,11 @@ const StudentProfileForm = () => {
 
       console.log("✅ Upload success:", response.data);
 
-      // Save the complete student object returned from backend (including resumePath, imagePath)
       localStorage.setItem("student", JSON.stringify(response.data));
+      localStorage.setItem("studentEmail", formData.email); // ✅ Save email for profile fetch
+
+      // Optional redirect to student dashboard
+      // navigate("/student-home");
     } catch (error) {
       console.error("❌ Upload failed:", error);
     }
@@ -137,6 +145,22 @@ const StudentProfileForm = () => {
             value={formData.zipCode}
             onChange={handleInputChange}
             placeholder="Zip Code"
+          />
+        </div>
+        <div className="role">
+          <input
+            type="text"
+            name="location"
+            value={formData.location}
+            onChange={handleInputChange}
+            placeholder="Location"
+          />
+          <input
+            type="text"
+            name="role"
+            value={formData.role}
+            onChange={handleInputChange}
+            placeholder="Role"
           />
         </div>
       </fieldset>

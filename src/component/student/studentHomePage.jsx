@@ -8,19 +8,19 @@ const StudentHomePage = () => {
   const [profile, setProfile] = useState(null);
   const [applications, setApplications] = useState([]);
   const [message, setMessage] = useState("");
+  const [animationTriggers, setAnimationTriggers] = useState({});
 
   useEffect(() => {
     fetchJobs();
     fetchStudentProfile();
     fetchApplications();
   }, []);
-  // 🔁 Auto-refresh applications every 10 seconds
+
   useEffect(() => {
     const interval = setInterval(() => {
       fetchApplications();
-    }, 10000); // 10 seconds
-
-    return () => clearInterval(interval); // Clear interval on unmount
+    }, 10000);
+    return () => clearInterval(interval);
   }, []);
 
   const fetchJobs = async () => {
@@ -33,13 +33,40 @@ const StudentHomePage = () => {
   };
 
   const fetchStudentProfile = async () => {
+    let email = localStorage.getItem("studentEmail");
+    if (!email) {
+      const studentUser = localStorage.getItem("studentUser");
+      if (studentUser) {
+        try {
+          const parsed = JSON.parse(studentUser);
+          if (parsed.email) {
+            email = parsed.email;
+            localStorage.setItem("studentEmail", email);
+          }
+        } catch (err) {
+          console.error("Failed to parse studentUser:", err);
+        }
+      }
+    }
+
+    if (!email) {
+      console.error("No student email found in localStorage or fallback");
+      setMessage("❌ Please log in again. Email not found.");
+      return;
+    }
+
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/student-profile"
+        `http://localhost:8080/api/student-profile/email?email=${email}`
       );
       setProfile(response.data);
     } catch (error) {
       console.error("Error fetching student profile:", error);
+      if (error.response?.status === 404) {
+        setMessage("⚠️ Profile not found. Please complete your profile first.");
+      } else {
+        setMessage("❌ Failed to load profile.");
+      }
     }
   };
 
@@ -61,14 +88,12 @@ const StudentHomePage = () => {
     }
 
     if (hasApplied(job)) {
-      setMessage(
-        "⚠️ You have already applied for this job. Please wait for recruiter response."
-      );
+      setMessage("⚠️ You have already applied for this job.");
       return;
     }
 
     const newApp = {
-      studentName: profile.firstName + " " + profile.lastName,
+      studentName: `${profile.firstName} ${profile.lastName}`,
       email: profile.email,
       jobTitle: job.title,
       company: job.company,
@@ -76,24 +101,32 @@ const StudentHomePage = () => {
       jobId: job.id,
       appliedDate: new Date().toISOString(),
       status: "Submitted",
+      role: profile.role,
     };
 
     try {
       await axios.post("http://localhost:8080/api/applications", newApp);
       setMessage("✅ Application submitted successfully.");
-
-      // Optimistically add new application to local state
       setApplications((prev) => [...prev, newApp]);
+
+      setAnimationTriggers((prev) => ({
+        ...prev,
+        [job.id]: Date.now(),
+      }));
+
+      const newCandidate = {
+        studentName: `${profile.firstName} ${profile.lastName}`,
+        email: profile.email,
+        location: `${profile.city}, ${profile.state}`,
+        skills: profile.keySkills,
+        education: `${profile.collegeName} (${profile.startYear}-${profile.endYear}), CGPA: ${profile.cgpa}`,
+        role: profile.role,
+      };
+
+      await axios.post("http://localhost:8080/api/candidates", newCandidate);
     } catch (error) {
-      if (
-        error.response &&
-        error.response.data &&
-        typeof error.response.data === "string" &&
-        error.response.data.includes("already applied")
-      ) {
-        setMessage(
-          "⚠️ You already applied for this job. Please wait for recruiter response."
-        );
+      if (error.response?.data?.includes("already applied")) {
+        setMessage("⚠️ You already applied for this job.");
       } else {
         setMessage("❌ Failed to apply: " + error.message);
       }
@@ -112,10 +145,8 @@ const StudentHomePage = () => {
   return (
     <div className="student-home-container">
       <h1 className="student-home-header">🎓 Student Dashboard</h1>
-
       {message && <p className="status-message">{message}</p>}
 
-      {/* Profile Section */}
       <div className="section-card">
         <h2>👤 Profile Details</h2>
         {profile ? (
@@ -145,6 +176,9 @@ const StudentHomePage = () => {
                 <strong>Experience:</strong> {profile.experience}
               </p>
               <p>
+                <strong>Role:</strong> {profile.role}
+              </p>
+              <p>
                 <strong>Projects:</strong> {profile.projects}
               </p>
               <p>
@@ -165,7 +199,7 @@ const StudentHomePage = () => {
                   <a
                     href={`http://localhost:8080/${profile.resumePath}`}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                   >
                     View Resume
                   </a>
@@ -183,13 +217,10 @@ const StudentHomePage = () => {
             )}
           </div>
         ) : (
-          <p>Loading profile...</p>
+          <p>Loading or profile not found...</p>
         )}
       </div>
 
-      {/* Job Listings Section */}
-      {/* Job Listings Section */}
-      {/* Job Listings Section */}
       <div className="section-card">
         <h2>💼 Available Jobs</h2>
         <div className="job-listings">
@@ -234,21 +265,20 @@ const StudentHomePage = () => {
                     </button>
                   </div>
 
-                  {/* ✅ Show tracker if applied and status is not rejected */}
-                  {hasAppliedToJob && application.status !== "Rejected" && (
+                  {/* ✅ Tracker will always render if applied */}
+                  {hasAppliedToJob && (
                     <ApplicationStatusTracker
+                      key={`${job.id}-${animationTriggers[job.id] || 0}`}
                       currentStatus={application.status || "Submitted"}
                     />
                   )}
 
-                  {/* Show applied date if available */}
                   {application?.appliedDate && (
                     <p>
                       <strong>Applied On:</strong> {application.appliedDate}
                     </p>
                   )}
 
-                  {/* ❌ Show rejection message if status is Rejected */}
                   {application?.status === "Rejected" && (
                     <p className="rejected-text">
                       ❌ Your application was rejected.

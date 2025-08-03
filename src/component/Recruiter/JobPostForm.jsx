@@ -11,7 +11,8 @@ const JobPostForm = () => {
     salary: "",
     experience: "",
     company: "",
-    postDate: getTodayDate(), // Automatically set to today's date
+    type: "", // ✅ make sure this matches JobSummary 'type' field
+    postDate: getTodayDate(),
   });
 
   const handleChange = (e) => {
@@ -26,7 +27,16 @@ const JobPostForm = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          title: formData.title,
+          location: formData.location,
+          description: formData.description,
+          salary: formData.salary,
+          experience: formData.experience,
+          company: formData.company,
+          type: formData.type,
+          postedDate: formData.postDate,
+        }),
       });
 
       if (!response.ok) {
@@ -37,6 +47,7 @@ const JobPostForm = () => {
       }
 
       alert("Job Posted Successfully!");
+
       setFormData({
         title: "",
         location: "",
@@ -44,13 +55,15 @@ const JobPostForm = () => {
         salary: "",
         experience: "",
         company: "",
-        postDate: new Date().toISOString().split("T")[0],
+        type: "",
+        postDate: getTodayDate(),
       });
     } catch (error) {
       console.error("Network error:", error);
       alert("Error posting job. Please check backend server or network.");
     }
   };
+
   return (
     <div className="job-form-container">
       <h2>Post a New Job</h2>
@@ -98,6 +111,14 @@ const JobPostForm = () => {
           value={formData.salary}
           onChange={handleChange}
         />
+
+        <label>Type</label>
+        <select name="type" value={formData.type} onChange={handleChange} required>
+          <option value="">Select type</option>
+          <option value="Full-time">Full-time</option>
+          <option value="Part-time">Part-time</option>
+          <option value="Internship">Internship</option>
+        </select>
 
         <label>Job Description</label>
         <textarea

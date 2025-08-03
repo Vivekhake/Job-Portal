@@ -157,13 +157,41 @@ const Navbar = () => {
                       My Job Listings
                     </NavLink>
                     <NavLink
-                      to="/SearchCandidates"
+                      to="/shortlist"
                       className={({ isActive }) =>
                         `${isActive ? "active-link" : ""}`
                       }
                       onClick={() => setMenuOpen(false)}
                     >
-                      Search Candidates
+                      Shortlisted
+                    </NavLink>
+
+                    <NavLink
+                      to="/interview"
+                      className={({ isActive }) =>
+                        `${isActive ? "active-link" : ""}`
+                      }
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Interview
+                    </NavLink>
+                    <NavLink
+                      to="/interviewScheduling"
+                      className={({ isActive }) =>
+                        `${isActive ? "active-link" : ""}`
+                      }
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Interview Scheduling
+                    </NavLink>
+                    <NavLink
+                      to="/offered"
+                      className={({ isActive }) =>
+                        `${isActive ? "active-link" : ""}`
+                      }
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Offered
                     </NavLink>
                   </div>
                 </div>

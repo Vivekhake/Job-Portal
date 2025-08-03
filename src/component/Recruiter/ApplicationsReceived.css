@@ -1,106 +1,120 @@
 .applications-received {
   padding: 2rem;
-  max-width: 1200px;
-  margin: auto;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  min-height: 100vh;
 }
 
-h2 {
-  text-align: center;
+.applications-received h2 {
   margin-bottom: 1.5rem;
   font-size: 2rem;
   color: #333;
 }
 
 .filter-bar {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
 .filter-bar label {
-  font-weight: 500;
+  font-weight: 600;
+  color: #555;
 }
 
 .filter-bar select {
   padding: 0.5rem;
-  border-radius: 6px;
+  border-radius: 5px;
   border: 1px solid #ccc;
 }
 
 .application-table {
   width: 100%;
   border-collapse: collapse;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
 }
 
 .application-table th,
 .application-table td {
-  padding: 1rem;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 0.95rem;
 }
 
 .application-table th {
-  background-color: #f4f4f4;
-  font-weight: 600;
+  background-color: #007bff;
+  color: white;
 }
 
-.application-table td a {
+.application-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.application-table a {
   color: #007bff;
   text-decoration: none;
 }
 
-.application-table td a:hover {
+.application-table a:hover {
   text-decoration: underline;
 }
 
 .application-table select {
-  padding: 0.4rem;
+  padding: 5px;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  font-size: 0.9rem;
 }
 
 .application-table button {
-  margin-top: 0.5rem;
-  padding: 0.4rem 0.8rem;
+  margin-left: 8px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
   border: none;
   border-radius: 4px;
-  background-color: #ff4d4d;
+  background-color: #dc3545;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .application-table button:hover {
-  background-color: #cc0000;
+  background-color: #c82333;
 }
 
+/* Status badge styling */
 .status-badge {
-  padding: 0.3rem 0.7rem;
-  border-radius: 20px;
-  color: rgb(61, 18, 18);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
   font-weight: bold;
-  display: inline-block;
-  font-size: 0.85rem;
+  color: rgb(199, 76, 76);
+  text-transform: capitalize;
 }
 
 .status-badge.submitted {
-  background-color: #007bff;
-}
-.status-badge.under\ review {
   background-color: #6c757d;
 }
-.status-badge.shortlisted {
+
+.status-badge.under-review {
   background-color: #17a2b8;
 }
-.status-badge.interview {
-  background-color: #ffc107;
-}
-.status-badge.offered {
+
+.status-badge.shortlisted {
   background-color: #28a745;
 }
+
+.status-badge.interview {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.status-badge.offered {
+  background-color: #007bff;
+}
+
 .status-badge.rejected {
   background-color: #dc3545;
 }
